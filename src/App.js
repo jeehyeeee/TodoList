@@ -46,6 +46,10 @@ function App() {
     setBody("");
     setNextId(nextId + 1);
   };
+  const clickRemoveButtonHandler = (id) => {
+    const resultArray = todoList.filter((item) => item.id !== id);
+    setTodoList(resultArray);
+  };
   const workings = todoList.filter((item) => !item.isDone);
   console.log(workings);
   const dones = todoList.filter((item) => item.isDone);
@@ -68,6 +72,7 @@ function App() {
         {/* isDone == false인 todoList  */}
         <Section
           todoList={workings}
+          clickRemoveButtonHandler={clickRemoveButtonHandler}
           onChange={(id) => {
             setTodoList((prev) => {
               return prev.map((item) => {
@@ -83,6 +88,7 @@ function App() {
         <h2>Done ! 🎉</h2>
         <Section
           todoList={dones}
+          clickRemoveButtonHandler={clickRemoveButtonHandler}
           onChange={(id) => {
             setTodoList((prev) => {
               return prev.map((item) => {
